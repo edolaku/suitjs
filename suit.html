@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<head>
+    <!-- My CSS -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+
+    </style>
+
+    <title>Coba1</title>
+</head>
+
+<body>
+
+    <label for="char">Pilih Karakter Anda:</label>
+    <select id="char" name="char">
+        <option value="gajah">Gajah</option>
+        <option value="semut">Semut</option>
+        <option value="orang">Orang</option>
+    </select>
+
+    <button id="save-btn">Simpan!</button>
+    <p id="hasil-el"></p>
+
+    <!-- Optional JavaScript -->
+    <script>
+        let player = "";
+        let comp = "";
+        let hasil = "";
+        const charEl = document.getElementById("char");
+        let char = charEl.value;
+        const inputBtn = document.getElementById("save-btn");
+        const hasilEl = document.getElementById("hasil-el");
+
+        inputBtn.addEventListener("click", function () {
+            player = charEl.value;
+            char.value = "";
+            comp = Math.random();
+            if (comp < 0.33) {
+                comp = "gajah";
+            } else if (comp >= 0.33 && comp < 0.66) {
+                comp = "semut";
+            } else {
+                comp = "orang";
+            }
+            console.log(player);
+            console.log(comp);
+            render();
+        })
+
+        function render() {
+            // Menggunakan operator if sederhana
+            // if (player == comp) {
+            //     hasil = "SERI";
+            // } else if (player == "gajah") {
+            //     if (comp == "semut") {
+            //         hasil = "Anda kalah";
+            //     } else {
+            //         hasil = "Anda menang";
+            //     }
+            // } else if (player == "semut") {
+            //     if (comp == "orang") {
+            //         hasil = "Anda kalah";
+            //     } else {
+            //         hasil = "Anda menang";
+            //     }
+            // } else {
+            //     if (comp == "gajah") {
+            //         hasil = "Anda kalah";
+            //     } else {
+            //         hasil = "Anda menang";
+            //     }
+            // }
+
+            // Menggunakan ternery if operator
+            if (player == comp) {
+                hasil = "Seri";
+            } else if (player == "gajah") {
+                // cara baca: masukkan "anda kalah" ke dalam variabel hasil jika comp = semut, dan masukkan "anda menang" ke dalam variabel hasil jika comp = parameter yg lain.
+                hasil = (comp == "semut") ? "Anda kalah" : "Anda menang";
+            } else if (player == " semut") {
+                hasil = (comp == "orang") ? "Anda kalah" : "Anda menang";
+            } else {
+                hasil = (comp == "gajah") ? "Anda kalah" : "Anda menang";
+            }
+
+            hasilEl.textContent = hasil;
+        }
+    </script>
+
+</body>
+
+</html>
