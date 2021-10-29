@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<head>
+    <!-- My CSS -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+
+    </style>
+
+    <title>Coba1</title>
+</head>
+
+<body>
+
+    <label for="char">Pilih Karakter Anda:</label>
+    <select id="char" name="char">
+        <option value="gajah">Gajah</option>
+        <option value="semut">Semut</option>
+        <option value="orang">Orang</option>
+    </select>
+
+    <button id="save-btn">Simpan!</button>
+    <p id="hasil-el"></p>
+
+    <!-- Optional JavaScript -->
+    <script>
+        // let player = "";
+        let hasil = "";
+        const charEl = document.getElementById("char");
+        let char = charEl.value;
+        const inputBtn = document.getElementById("save-btn");
+        const hasilEl = document.getElementById("hasil-el");
+
+        function getComp() {
+            const i = Math.random();
+            if (i < 0.33) return "gajah";
+            if (i >= 0.33 && i < 0.66) return "semut";
+            return "orang";
+        }
+
+        function render(player, comp) {
+            if (player == comp) return "Seri";
+            // sama seperti fungsi if biasanya, namun dg return, fungsi tidak akan dilanjutkan ke bawah, sehingga mempercepat proses
+            if (player == "gajah") return (comp == "semut") ? "Anda kalah" : "Anda menang";
+            if (player == "semut") return (comp == "orang") ? "Anda kalah" : "Anda menang";
+            if (player == "orang") return (comp == "gajah") ? "Anda kalah" : "Anda menang";
+        }
+
+        inputBtn.addEventListener("click", function () {
+            const Player = charEl.value;
+            const Comp = getComp();
+            hasil = render(Player, Comp);
+            hasilEl.textContent = hasil;
+        })
+    </script>
+
+</body>
+
+</html>
